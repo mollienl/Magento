@@ -119,7 +119,7 @@ class Mollie_Mpm_IdlController extends Mage_Core_Controller_Front_Action
 	 * After clicking 'Place Order' the method 'getOrderPlaceRedirectUrl()' gets called and redirects to here with the bank_id
 	 * Then this action creates an payment with a transaction_id that gets inserted in the database (mollie_payments, sales_payment_transaction)
 	 */
-	public function paymentAction ()
+	public function formAction ()
 	{
 		if ($this->getRequest()->getParam('order_id')) {
 			// Load failed payment order
@@ -377,23 +377,5 @@ class Mollie_Mpm_IdlController extends Mage_Core_Controller_Front_Action
 		$this->getLayout()->getBlock('content')->append($block);
 
 		$this->renderLayout();
-	}
-
-	public function formAction ()
-	{
-		if ($this->getRequest()->isPost())
-		{
-			$create_new_payment = Mage::getUrl(
-				'mpm/idl/payment',
-				array(
-					'_secure' => TRUE,
-					'_query' => array(
-						'bank_id'  => $this->getRequest()->getPost('bank_id'),
-						'order_id' => $this->getRequest()->getPost('order_id')
-					)
-				)
-			);
-			$this->_redirectUrl($create_new_payment);
-		}
 	}
 }

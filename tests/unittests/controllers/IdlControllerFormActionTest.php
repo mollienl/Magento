@@ -2,7 +2,7 @@
 /**
  * @covers Mollie_Mpm_IdlController
  */
-class Mollie_Mpm_IdlControllerPaymentActionTest extends MagentoPlugin_TestCase
+class Mollie_Mpm_IdlControllerformActionTest extends MagentoPlugin_TestCase
 {
 	/**
 	 * @var Mollie_Mpm_IdlController|PHPUnit_Framework_MockObject_MockObject
@@ -203,7 +203,7 @@ class Mollie_Mpm_IdlControllerPaymentActionTest extends MagentoPlugin_TestCase
 			->with(self::BANK_URL);
 
 		$this->controller->_construct();
-		$this->controller->paymentAction();
+		$this->controller->formAction();
 	}
 
 	public function testOrderAmountLessThanMinimumGivesException()
@@ -234,7 +234,7 @@ class Mollie_Mpm_IdlControllerPaymentActionTest extends MagentoPlugin_TestCase
 			->with("TOOLOW");
 
 		$this->controller->_construct();
-		$this->controller->paymentAction();
+		$this->controller->formAction();
 	}
 
 	public function testOrderLoadedByIncrementIdIfNoOrderIdInPost()
@@ -258,6 +258,6 @@ class Mollie_Mpm_IdlControllerPaymentActionTest extends MagentoPlugin_TestCase
 		$this->setExpectedException("Test_Exception", "STOP", 400);
 
 		$this->controller->_construct();
-		$this->controller->paymentAction();
+		$this->controller->formAction();
 	}
 }
